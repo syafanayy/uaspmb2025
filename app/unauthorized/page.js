@@ -1,6 +1,8 @@
 // app/unauthorized/page.js
 "use client";
 export const dynamic = "force-dynamic";
+export const dynamicParams = true;
+export const fetchCache = 'force-no-store';
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
