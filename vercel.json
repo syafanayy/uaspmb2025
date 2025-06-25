@@ -1,4 +1,10 @@
 {
-    "output": "standalone"
-  }
-  
+  "output": "standalone",
+  "routes": [
+    {
+      "src": "/unauthorized",
+      "methods": ["GET"],
+      "dest": "/unauthorized"
+    }
+  ]
+}
