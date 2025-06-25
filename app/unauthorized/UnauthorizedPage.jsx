@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function UnauthorizedPage() {
-  const { data: session } = useSession();
+  const sessionData = useSession();
+  const session = sessionData?.data;
   const router = useRouter();
 
   const handleGoBack = () => {
@@ -31,9 +32,15 @@ export default function UnauthorizedPage() {
           <div className="bg-red-800/30 border border-red-600/30 rounded-lg p-4 mb-6 text-left">
             <h3 className="font-semibold mb-2 text-red-200">Informasi Akun Anda:</h3>
             <div className="space-y-1 text-sm">
-              <p>👤 <span className="text-blue-300">Username:</span> {session.user.username}</p>
-              <p>📧 <span className="text-green-300">Email:</span> {session.user.email}</p>
-              <p>🏷️ <span className="text-purple-300">Role:</span> {session.user.role}</p>
+              <p>
+                👤 <span className="text-blue-300">Username:</span> {session?.user?.username}
+              </p>
+              <p>
+                📧 <span className="text-green-300">Email:</span> {session?.user?.email}
+              </p>
+              <p>
+                🏷️ <span className="text-purple-300">Role:</span> {session?.user?.role}
+              </p>
             </div>
           </div>
         )}
@@ -43,15 +50,25 @@ export default function UnauthorizedPage() {
           </div>
         )}
         <div className="space-y-3">
-          <button onClick={handleGoBack} className="w-full bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition-colors">🏠 Kembali ke Area Anda</button>
-          <Link href="/" className="block w-full bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold transition-colors text-center">🌐 Ke Beranda</Link>
-          <button onClick={handleLogout} className="w-full bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-semibold transition-colors">🚪 Logout</button>
+          <button onClick={handleGoBack} className="w-full bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition-colors">
+            🏠 Kembali ke Area Anda
+          </button>
+          <Link href="/" className="block w-full bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold transition-colors text-center">
+            🌐 Ke Beranda
+          </Link>
+          <button onClick={handleLogout} className="w-full bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-semibold transition-colors">
+            🚪 Logout
+          </button>
         </div>
         <div className="mt-6 p-4 bg-white/5 rounded-lg text-left">
           <h4 className="font-semibold mb-2 text-sm">ℹ️ Informasi Role:</h4>
           <div className="text-xs text-gray-300 space-y-1">
-            <p><span className="text-red-300">Admin:</span> Akses ke /dashboard dan area admin</p>
-            <p><span className="text-blue-300">User:</span> Akses ke /profile dan area user</p>
+            <p>
+              <span className="text-red-300">Admin:</span> Akses ke /dashboard dan area admin
+            </p>
+            <p>
+              <span className="text-blue-300">User:</span> Akses ke /profile dan area user
+            </p>
           </div>
         </div>
       </div>
